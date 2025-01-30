@@ -1,3 +1,4 @@
+import Footer from "../../common/components/Footer"
 import Header from "../../common/components/Header"
 
 export default function User() {
@@ -7,6 +8,7 @@ export default function User() {
       <div>
         <h2>User</h2>
       </div>
+      <Footer />
     </>
   )
 }
