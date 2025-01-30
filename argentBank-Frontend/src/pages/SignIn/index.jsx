@@ -1,3 +1,4 @@
+import Footer from "../../common/components/Footer"
 import Header from "../../common/components/Header"
 
 export default function SignIn() {
@@ -7,6 +8,7 @@ export default function SignIn() {
       <div>
         <h2>Sign In</h2>
       </div>
+      <Footer />
     </>
   )
 }
