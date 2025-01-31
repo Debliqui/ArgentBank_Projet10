@@ -12,6 +12,16 @@
     }
   }
 }
+.features {
+  display: flex;
+  flex-direction: column;
+  &__title {
+    color: #222;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+}
 
 @media (min-width: 920px) {
   .banner {
@@ -23,5 +33,8 @@
         font-size: 1.2rem;
       }
     }
+  }
+  .features {
+    flex-direction: row;
   }
 }
