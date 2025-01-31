@@ -1,6 +1,6 @@
 .banner {
   background-position: 0 -50px;
-  background-size: cover;
+
   background-repeat: no-repeat;
   height: 300px;
   position: relative;
@@ -19,6 +19,7 @@
   .banner {
     height: 400px;
     background-position: 0% 33%;
+    background-size: cover;
     &__content {
       position: absolute;
       top: 50px;
