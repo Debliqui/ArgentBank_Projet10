@@ -31,7 +31,7 @@ export default function Header() {
               </NavLink>
             </>
           ) : (
-            <NavLink className="header__navBar__item" to="/sign-in">
+            <NavLink className="header__navBar__item" to="/login">
               <i className="fa fa-user-circle" />
               <span>Sign In</span>
             </NavLink>
