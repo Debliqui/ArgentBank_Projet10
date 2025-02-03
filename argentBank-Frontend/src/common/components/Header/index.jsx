@@ -3,6 +3,10 @@ import argentBankLogo from "../../../assets/img/argentBankLogo.png"
 import "./index.scss"
 
 export default function Header() {
+  const isUserLoggedIn = window.sessionStorage.getItem("keys")
+  const removeKeys = () => {
+    window.sessionStorage.removeItem("keys")
+  }
   return (
     <header>
       <nav className="header__navBar">
@@ -15,10 +19,23 @@ export default function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          <NavLink className="header__navBar__item" to="/sign-in">
-            <i className="fa fa-user-circle" />
-            <span>Sign In</span>
-          </NavLink>
+          {isUserLoggedIn ? (
+            <>
+              <NavLink
+                className="header__navBar__item"
+                to="/"
+                onClick={removeKeys}
+              >
+                <i className="fa fa-sign-out"></i>
+                Sign Out
+              </NavLink>
+            </>
+          ) : (
+            <NavLink className="header__navBar__item" to="/sign-in">
+              <i className="fa fa-user-circle" />
+              <span>Sign In</span>
+            </NavLink>
+          )}
         </div>
       </nav>
     </header>
