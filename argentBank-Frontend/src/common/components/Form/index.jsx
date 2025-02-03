@@ -1,7 +1,11 @@
+import { useDispatch } from "react-redux"
+import { setAccess } from "../../../features/authentication/AuthenticationSlice"
 import { useEffect } from "react"
 import "./index.scss"
 
 export default function Form() {
+  const dispatch = useDispatch()
+
   const rememberMe = () => {
     const rememberMeInput = document.getElementById("remember-me").checked
     const email = document.getElementById("email").value
@@ -26,12 +30,15 @@ export default function Form() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Erreur dans l’identifiant ou le mot de passe")
+          throw new Error("Login or password error")
         }
         return response.json()
       })
       .then((data) => {
+        console.log("Token reçu : ", data.body.token)
         window.sessionStorage.setItem("keys", data.body.token)
+        dispatch(setAccess())
+        console.log(setAccess())
         window.location.href = "/profile"
       })
       .catch((error) => {

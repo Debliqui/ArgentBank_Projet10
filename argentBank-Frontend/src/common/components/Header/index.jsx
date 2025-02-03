@@ -1,12 +1,13 @@
 import { NavLink } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
 import argentBankLogo from "../../../assets/img/argentBankLogo.png"
 import "./index.scss"
+import { removeAccess } from "../../../features/authentication/AuthenticationSlice"
 
 export default function Header() {
-  const isUserLoggedIn = window.sessionStorage.getItem("keys")
-  const removeKeys = () => {
-    window.sessionStorage.removeItem("keys")
-  }
+  const access = useSelector((state) => state.authentication.access)
+  const dispatch = useDispatch()
+
   return (
     <header>
       <nav className="header__navBar">
@@ -19,17 +20,16 @@ export default function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          {isUserLoggedIn ? (
-            <>
-              <NavLink
-                className="header__navBar__item"
-                to="/"
-                onClick={removeKeys}
-              >
-                <i className="fa fa-sign-out"></i>
-                Sign Out
-              </NavLink>
-            </>
+          {console.log(access)}
+          {access ? (
+            <NavLink
+              className="header__navBar__item"
+              to="/"
+              onClick={() => dispatch(removeAccess())}
+            >
+              <i className="fa fa-sign-out"></i>
+              <span>Sign Out</span>
+            </NavLink>
           ) : (
             <NavLink className="header__navBar__item" to="/login">
               <i className="fa fa-user-circle" />
