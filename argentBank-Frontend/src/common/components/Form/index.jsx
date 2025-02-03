@@ -32,7 +32,7 @@ export default function Form() {
       })
       .then((data) => {
         window.sessionStorage.setItem("keys", data.body.token)
-        window.location.href = "/user"
+        window.location.href = "/profile"
       })
       .catch((error) => {
         console.error("Error:", error)
