@@ -20,7 +20,6 @@ export default function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          {console.log(access)}
           {access ? (
             <NavLink
               className="header__navBar__item"
