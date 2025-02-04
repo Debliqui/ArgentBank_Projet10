@@ -1,7 +1,10 @@
 import { useEffect } from "react"
 import "./index.scss"
+import { useDispatch } from "react-redux"
+import { loginUser } from "../../../features/authentication/AuthenticationAction"
 
 export default function Form() {
+  const dispatch = useDispatch()
   const rememberMe = () => {
     const rememberMeInput = document.getElementById("remember-me").checked
     const email = document.getElementById("email").value
@@ -17,28 +20,7 @@ export default function Form() {
       email: document.getElementById("email").value,
       password: document.getElementById("password").value,
     }
-    const userLogin = JSON.stringify(user)
-
-    fetch("http://localhost:3001/api/v1/user/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: userLogin,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Erreur dans l’identifiant ou le mot de passe")
-        }
-        return response.json()
-      })
-      .then((data) => {
-        window.sessionStorage.setItem("keys", data.body.token)
-        window.location.href = "/profile"
-      })
-      .catch((error) => {
-        console.error("Error:", error)
-        document.querySelector(".messageError").textContent =
-          "Identifiant ou le mot de passe incorrect"
-      })
+    dispatch(loginUser(JSON.stringify(user)))
   }
   useEffect(() => {
     if (window.localStorage.getItem("rememberedemail")) {
