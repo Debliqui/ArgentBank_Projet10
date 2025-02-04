@@ -3,10 +3,22 @@ import { useDispatch, useSelector } from "react-redux"
 import argentBankLogo from "../../../assets/img/argentBankLogo.png"
 import "./index.scss"
 import { removeAccess } from "../../../features/authentication/AuthenticationSlice"
+import {
+  getUserProfile,
+  selectUserName,
+} from "../../../features/user/userSlice"
+import { useEffect } from "react"
 
 export default function Header() {
   const access = useSelector((state) => state.authentication.access)
+  const userName = useSelector(selectUserName)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (access) {
+      dispatch(getUserProfile())
+    }
+  }, [dispatch, access])
 
   return (
     <header>
@@ -21,14 +33,20 @@ export default function Header() {
         </NavLink>
         <div>
           {access ? (
-            <NavLink
-              className="header__navBar__item"
-              to="/"
-              onClick={() => dispatch(removeAccess())}
-            >
-              <i className="fa fa-sign-out"></i>
-              <span>Sign Out</span>
-            </NavLink>
+            <>
+              <NavLink className="header__navBar__item" to="/profile">
+                <i className="fa fa-user-circle" />
+                <span>{userName}</span>
+              </NavLink>
+              <NavLink
+                className="header__navBar__item"
+                to="/"
+                onClick={() => dispatch(removeAccess())}
+              >
+                <i className="fa fa-sign-out"></i>
+                <span>Sign Out</span>
+              </NavLink>
+            </>
           ) : (
             <NavLink className="header__navBar__item" to="/login">
               <i className="fa fa-user-circle" />
