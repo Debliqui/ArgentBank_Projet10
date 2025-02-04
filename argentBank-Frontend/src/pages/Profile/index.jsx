@@ -3,6 +3,8 @@ import Header from "../../common/components/Header"
 import { useState, useEffect } from "react"
 
 import "./index.scss"
+import accountContent from "../../assets/accountContent.json"
+import Account from "../../common/components/Account"
 
 export default function Profile() {
   const isUserLoggedIn = window.sessionStorage.getItem("keys")
@@ -41,6 +43,14 @@ export default function Profile() {
           <button className="edit-button">Edit Name</button>
         </header>
         <h3 className="sr-only">Accounts</h3>
+        {accountContent.map((account) => (
+          <Account
+            key={account.id}
+            title={account.title}
+            amount={account.amount}
+            amountDescription={account.amountDescription}
+          />
+        ))}
       </main>
       <Footer />
     </>
