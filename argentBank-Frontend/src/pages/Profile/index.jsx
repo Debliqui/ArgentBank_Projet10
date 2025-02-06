@@ -12,6 +12,7 @@ import {
   selectLastName,
 } from "../../features/user/userSlice"
 import { NavLink } from "react-router"
+import EditUser from "../../common/components/EditUser"
 
 export default function Profile() {
   const dispatch = useDispatch()
@@ -22,6 +23,10 @@ export default function Profile() {
     dispatch(getUserProfile())
   }, [dispatch])
 
+  const showEditUser = () => {
+    const dialog = document.querySelector("dialog")
+    dialog.showModal()
+  }
   return (
     <>
       <Header />
@@ -39,13 +44,17 @@ export default function Profile() {
           </>
         ) : (
           <>
+            {}
             <header className="header">
               <h2>
                 Welcome back
                 <br />
                 {`${firstName} ${lastName}!`}
               </h2>
-              <button className="button">Edit Name</button>
+              <button className="button" onClick={showEditUser}>
+                Edit Name
+              </button>
+              <EditUser />
             </header>
             <h3 className="sr-only">Accounts</h3>
             {accountContent.map((account) => (
