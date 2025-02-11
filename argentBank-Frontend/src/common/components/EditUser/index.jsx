@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import {
   selectUserName,
@@ -14,28 +14,36 @@ export default function EditUser() {
   const firstName = useSelector(selectFirstName)
   const lastName = useSelector(selectLastName)
 
+  const modalRef = useRef(null)
+  const userNameRef = useRef(null)
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const user = {
-      userName: document.getElementById("userName").value,
+      userName: userNameRef.current.value,
     }
     dispatch(editUserName(user))
-    const dialog = document.querySelector("dialog")
-    dialog.close()
+    modalRef.current.close()
   }
 
   useEffect(() => {
     dispatch(getUserProfile())
   }, [dispatch])
 
+  const showEditUser = () => {
+    modalRef.current.showModal()
+  }
+
   const closeEditUser = (event) => {
-    const dialog = document.querySelector("dialog")
     event.preventDefault()
-    dialog.close()
+    modalRef.current.close()
   }
   return (
     <>
-      <dialog className="edit">
+      <button className="button" onClick={showEditUser}>
+        Edit Name
+      </button>
+      <dialog ref={modalRef} className="edit">
         <h2>Edit user info</h2>
         <form onSubmit={handleSubmit}>
           <div className="edit__wrapper">
@@ -45,10 +53,7 @@ export default function EditUser() {
               id="userName"
               placeholder={userName}
               maxLength="15"
-              // value={userName}
-              // onChange={(e) =>
-              //   dispatch(editUserName({ userName: e.target.value }))
-              // }
+              ref={userNameRef}
             />
           </div>
           <div className="edit__wrapper">

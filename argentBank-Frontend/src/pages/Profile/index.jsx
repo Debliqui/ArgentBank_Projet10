@@ -23,10 +23,6 @@ export default function Profile() {
     dispatch(getUserProfile())
   }, [dispatch])
 
-  const showEditUser = () => {
-    const dialog = document.querySelector("dialog")
-    dialog.showModal()
-  }
   return (
     <>
       <Header />
@@ -51,9 +47,6 @@ export default function Profile() {
                 <br />
                 {`${firstName} ${lastName}!`}
               </h2>
-              <button className="button" onClick={showEditUser}>
-                Edit Name
-              </button>
               <EditUser />
             </header>
             <h3 className="sr-only">Accounts</h3>
