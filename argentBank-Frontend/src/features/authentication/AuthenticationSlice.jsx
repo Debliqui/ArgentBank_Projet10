@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   access: sessionStorage.getItem("access") === "true",
+  error: false,
 }
 
 const authenticationSlice = createSlice({
@@ -17,8 +18,11 @@ const authenticationSlice = createSlice({
       sessionStorage.setItem("access", false)
       window.sessionStorage.removeItem("keys")
     },
+    setError: (state) => {
+      state.error = true
+    },
   },
 })
 
-export const { setAccess, removeAccess } = authenticationSlice.actions
+export const { setAccess, removeAccess, setError } = authenticationSlice.actions
 export default authenticationSlice.reducer
