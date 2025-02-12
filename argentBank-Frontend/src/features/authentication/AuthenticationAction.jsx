@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { setAccess } from "./AuthenticationSlice"
+import { setAccess, setError } from "./AuthenticationSlice"
 
 export const loginUser = createAsyncThunk(
   "authentication/loginUser",
@@ -22,8 +22,7 @@ export const loginUser = createAsyncThunk(
       })
       .catch((error) => {
         console.error("Error:", error)
-        document.querySelector(".messageError").textContent =
-          "Login or password error"
+        dispatch(setError())
       })
   }
 )
