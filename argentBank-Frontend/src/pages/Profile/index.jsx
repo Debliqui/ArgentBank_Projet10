@@ -53,6 +53,8 @@ export default function Profile() {
             {accountContent.map((account) => (
               <Account
                 key={account.id}
+                locale={account.locale}
+                currency={account.currency}
                 title={account.title}
                 amount={account.amount}
                 amountDescription={account.amountDescription}
