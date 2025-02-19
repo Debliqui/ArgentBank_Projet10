@@ -21,7 +21,11 @@ export const loginUser = createAsyncThunk(
         window.location.href = "/profile"
       })
       .catch((error) => {
-        console.error("Error:", error)
+        {
+          {
+            error
+          }
+        }
         dispatch(setError())
       })
   }
