@@ -36,6 +36,10 @@ export default function Profile() {
                   Login
                 </NavLink>
               }
+              <span>
+                If you come across this message again,
+                <a href="mailto:someone@example.com">Contact us</a>
+              </span>
             </section>
           </>
         ) : (

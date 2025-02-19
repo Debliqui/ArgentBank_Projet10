@@ -4,12 +4,24 @@ const isUserLoggedIn = window.sessionStorage.getItem("keys")
 export const getUserProfile = createAsyncThunk(
   "user/getUserProfile",
   async () => {
-    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${isUserLoggedIn}` },
-    })
-    const data = await response.json()
-    return data.body
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/user/profile",
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${isUserLoggedIn}` },
+        }
+      )
+      const data = await response.json()
+      return data.body
+    } catch (error) {
+      {
+        {
+          error
+        }
+      }
+      throw error
+    }
   }
 )
 
