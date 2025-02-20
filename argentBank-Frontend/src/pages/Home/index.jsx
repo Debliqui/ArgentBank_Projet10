@@ -3,9 +3,9 @@ import Header from "../../common/components/Header"
 import Banner from "../../common/components/Banner"
 import Card from "../../common/components/Card"
 
-import iconChat from "../../assets/icon/icon-chat.png"
-import iconMoney from "../../assets/icon/icon-money.png"
-import iconSecurity from "../../assets/icon/icon-security.png"
+import iconChat from "../../assets/icon/icon-chat.svg"
+import iconMoney from "../../assets/icon/icon-money.svg"
+import iconSecurity from "../../assets/icon/icon-security.svg"
 import "./index.scss"
 
 export default function Home() {
