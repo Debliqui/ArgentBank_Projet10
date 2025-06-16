@@ -12,9 +12,7 @@ export default function Form() {
   const messageErrorRef = useRef(null)
 
   const rememberMe = () => {
-    rememberMeInputRef.current.checked
-
-    if (rememberMeInputRef.current && emailRef.current) {
+    if (rememberMeInputRef.current.checked) {
       window.localStorage.setItem("rememberedemail", emailRef.current.value)
     }
   }
